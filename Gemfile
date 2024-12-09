@@ -1,4 +1,8 @@
 source "https://rubygems.org"
+gem "devise" # For user authentication
+gem "active_storage_validations" # For validating image uploads
+gem "bootstrap", "~> 5.1" # For styling with Bootstrap
+gem 'sassc-rails'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.2.2"

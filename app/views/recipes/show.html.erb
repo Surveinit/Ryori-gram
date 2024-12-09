@@ -1,2 +1,9 @@
-<h1>Recipes#show</h1>
-<p>Find me in app/views/recipes/show.html.erb</p>
+<h1><%= @recipe.title %></h1>
+<h3>Ingredients: <%= @recipe.ingredients%></h3>
+<p><%= @recipe.instructions%></p>
+<%= image_tag(@recipe.image) if @recipe.image.attached? %>
+
+<% if @recipe.user == current_user %>
+  <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+  <%= link_to 'Delete', @recipe, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>

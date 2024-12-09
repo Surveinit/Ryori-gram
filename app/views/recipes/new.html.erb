@@ -1,2 +1,40 @@
-<h1>Recipes#new</h1>
-<p>Find me in app/views/recipes/new.html.erb</p>
+<h1>New Recipe</h1>
+
+<%= form_with(model: @recipe, local: true) do |form| %>
+  <% if @recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+      <ul>
+        <% @recipe.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :ingredients%>
+    <%= form.text_area :ingredients%>
+  </div>
+
+  <div>
+    <%= form.label :instructions%>
+    <%= form.text_area :instructions%>
+  </div>
+
+  <div>
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', recipes_path %>

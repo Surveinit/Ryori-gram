@@ -1,2 +1,32 @@
-<h1>Recipes#index</h1>
-<p>Find me in app/views/recipes/index.html.erb</p>
+<div class="header">
+  <h1>りょうり グラム</h1>
+  <div class="navigation-bar">
+    <nav>
+      <a class="home" href="/recipes/index">Home</a>
+      <a class="recipes" href="/recipes">Recipes</a>
+      <a class="sign" href="/users/sign_in">Sign in</a>
+    </nav>
+
+  </div>
+
+  <h1>Recipes🧫</h1>
+
+<%= form_with(url: recipes_path, method: :get, local: true) do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search recipes" %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<%= link_to 'New Recipe', new_recipe_path %>
+
+<ul>
+  <% @recipes.each do |recipe| %>
+    <li>
+      <%= link_to recipe.title, recipe_path(recipe) %> - 
+    </li>
+  <% end %>
+</ul>
+
+<footer class="footer">
+  <p>© 2024 Ryori Gram.</p>
+</footer>
+
