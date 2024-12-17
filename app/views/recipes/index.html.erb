@@ -1,32 +1,39 @@
 <div class="header">
-  <h1>りょうり グラム</h1>
+  <h1>りょうり グラム🦞</h1>
   <div class="navigation-bar">
     <nav>
-      <a class="home" href="/recipes/index">Home</a>
-      <a class="recipes" href="/recipes">Recipes</a>
-      <a class="sign" href="/users/sign_in">Sign in</a>
+      <% if user_signed_in? %>
+        <div class="user-details">
+          Logged in as (<%= current_user.email %>)
+          <%= button_to"Sign Out", destroy_user_session_path, method: :delete %>
+        </div>
+      <% else %>
+        <a class="sign" href="/users/sign_in">Sign in</a>
+      <% end %>
     </nav>
+
 
   </div>
 
-  <h1>Recipes🧫</h1>
+  <p></p>
 
-<%= form_with(url: recipes_path, method: :get, local: true) do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search recipes" %>
-  <%= submit_tag "Search" %>
-<% end %>
-
-<%= link_to 'New Recipe', new_recipe_path %>
-
-<ul>
-  <% @recipes.each do |recipe| %>
-    <li>
-      <%= link_to recipe.title, recipe_path(recipe) %> - 
-    </li>
+  <%= form_with(url: recipes_path, method: :get, local: true) do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search recipes" %>
+    <%= submit_tag "Search" %>
   <% end %>
-</ul>
 
-<footer class="footer">
-  <p>© 2024 Ryori Gram.</p>
-</footer>
+  <p></p>
+  <%= link_to 'New Recipe', new_recipe_path %>
+
+  <ol>
+    <% @recipes.each do |recipe| %>
+      <li>
+        <%= link_to recipe.title, recipe_path(recipe) %> by <%= recipe.user.email %> 
+      </li>
+    <% end %>
+  </ol>
+
+  <footer class="footer">
+    <p>© 2024 Ryori Gram.</p>
+  </footer>
 
