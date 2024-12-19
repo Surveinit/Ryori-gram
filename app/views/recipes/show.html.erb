@@ -1,7 +1,7 @@
 <h1><%= @recipe.title %></h1>
-<h3>Ingredients: <%= @recipe.ingredients%></h3>
-<p><%= @recipe.instructions%></p>
 <%= image_tag(@recipe.image) if @recipe.image.attached? %>
+<h4>Ingredients: <%= @recipe.ingredients%></h4>
+<p>Directions: <%= @recipe.instructions%></p>
 
 <% if @recipe.user == current_user %>
   <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
